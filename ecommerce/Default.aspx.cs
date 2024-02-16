@@ -12,16 +12,15 @@ namespace ecommerce
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            // Verifica se la pagina è caricata per la prima volta
-            if (!IsPostBack)
+            // Se le figure in figure list == 0 allora:
+            if (Figure.FigureList.Count == 0) // nb: inizialmente utilizziato !IsPostBack ma stampava ad ogni a
             {
-                // Crea le figure (oggetti) e popola il repeater con le informazioni di ciascuna
+                // Crea le figure (oggetti) se la lista == 0
                 Figure.CreateFigures();
+            }
+                // Popola la lista
                 FigureRepeater.DataSource = Figure.FigureList;
                 FigureRepeater.DataBind();
-            }
-            else
-            {  Response.Write("Non ci sono nuove figure.");}
             }
 
         // Definizione dei prodotti con:
@@ -56,8 +55,8 @@ namespace ecommerce
             public static void CreateFigures()
             {
                 // creo col costruttore
-                Figure NanaO = new Figure("Nana Osaki", "Debuted in July 2023 a detailed figure of the main character of the show <i>Nana</i> by author Ai Yazawa. 1/8 scale by brand HOBBY MAX JAPAN, shipping only to Japan, Taiwan and Hong Kong", 126.02, false, "https://img.amiami.com/images/product/review/223/FIGURE-142292_05.jpg", "https://img.amiami.com/images/product/main/223/FIGURE-142292.jpg");
-                Figure NanaK = new Figure("Nana Komatsu", "Debuted in July 2023 a detailed figure of the main character of the show <i>Nana</i> by author Ai Yazawa. 1/8 scale by brand HOBBY MAX JAPAN, shipping only to Japan, Taiwan and Hong Kong", 112.78, false, "https://img.amiami.com/images/product/review/223/FIGURE-142291_05.jpg", "https://img.amiami.com/images/product/main/223/FIGURE-142291.jpg");
+                Figure NanaO = new Figure("Nana Osaki", "Debuted in July 2023 a detailed figure of one of the main character of the show Nana by author Ai Yazawa. 1/8 scale by brand HOBBY MAX JAPAN, shipping only to Japan, Taiwan and Hong Kong", 126.02, false, "https://img.amiami.com/images/product/review/223/FIGURE-142292_05.jpg", "https://img.amiami.com/images/product/main/223/FIGURE-142292.jpg");
+                Figure NanaK = new Figure("Nana Komatsu", "Debuted in July 2023 a detailed figure of one of the main character of the show Nana by author Ai Yazawa. 1/8 scale by brand HOBBY MAX JAPAN, shipping only to Japan, Taiwan and Hong Kong", 112.78, false, "https://img.amiami.com/images/product/review/223/FIGURE-142291_05.jpg", "https://img.amiami.com/images/product/main/223/FIGURE-142291.jpg");
 
                 //popolo la lista
                 FigureList.Add(NanaO);
@@ -65,8 +64,15 @@ namespace ecommerce
             }
 
         }
-
-        // Gestione degli eventi del bottone -> Redirect a dettagli
+        // fuori dalla classe
+        // Gestione degli eventi del LinkButton che ha come evento OnClick il Redirect a dettagli
+        protected void Detail_Click(object sender, EventArgs e)
+        {
+            // Otteniamo il nome del prodotto associato
+            string productName = ((LinkButton)sender).CommandArgument;
+            // Reindirizziamo alla pagina dei dettagli aggiungendo al link il nome del prodotto nella query string
+            HttpContext.Current.Response.Redirect("Detail.aspx?Name=" + productName);
         }
+    }
 
 }

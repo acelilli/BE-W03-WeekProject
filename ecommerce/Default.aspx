@@ -16,8 +16,7 @@
                         <h5 class="card-title"><%# Eval("Name") %></h5>
                         <p>Prezzo: <i><%#Eval("Price") %>&euro;</i></p>
                         <!-- Da aggiungere! OnClick REDIRECT a DETAIL-->
-                        <asp:Button ID="ToDetail" runat="server" Text="Dettagli Prodotto" CssClass="btn btn-dark" Style="background-color: #663d71;" />
-
+                        <asp:LinkButton ID="ToDetail" runat="server" Text="Dettagli Prodotto" CssClass="btn btn-dark" Style="background-color: #663d71;" OnClick="Detail_Click" CommandArgument='<%# Eval("Name") %>' />
                     </div>
                 </div>
                 <!--Fine Card-->

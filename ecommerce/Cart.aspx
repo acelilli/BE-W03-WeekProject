@@ -9,9 +9,10 @@
     <!--Card-->
 <div class="col mb-4">
     <div class="card text-white bg-dark mb-3" style="width: 18rem;">
-        <img src="..." class="card-img-top" alt="ProductImg">
+        <asp:Image ID="ImageCart" runat="server" CssClass="card-img-top w-100" />
         <div class="card-body">
-            <h5 class="card-title">NomeProdotto</h5>
+            <h5 class="card-title"><asp:Label ID="LabelCardTitle" runat="server" /></h5>
+            <p>Prezzo: <i><asp:Label ID="LabelCardPrezzo" runat="server" />&euro;</i></p>
             <!-- Da aggiungere! OnClick RemoveFromCart_Click-->
             <asp:Button ID="RemoveFromCart" runat="server" Text="Rimuovi dal carrello" CssClass="btn btn-dark" Style="background-color: #663d71;" />
 

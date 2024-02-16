@@ -4,26 +4,29 @@
     <main aria-labelledby="title">
         <h2 id="title">Dettagli prodotto:</h2>
         <!--ROW-->
-        <div class="row">
+        <div class="row justify-content-center">
             <!--CARD-->
-            <div class="card text-white bg-dark mb-3" style="max-width: 540px;">
+            <div id="Details" runat="server" class="card text-white bg-dark border border-1 border-white mb-3 p-0 w-100">
                 <div class="row g-0">
-                    <div class="col">
-                        <img src="..." class="img-fluid rounded-start" alt="ProductImg">
+                    <div class="col-md-6 py-0">
+                        <asp:Image ID="ImageDetail" runat="server" CssClass="card-img-top w-100" />
+                        <asp:Image ID="ImageCart" runat="server" CssClass="card-img-top w-100" />
                     </div>
-                    <div class="col-md-8">
+                    <!-- Colonna per il blocco con titolo, descrizione, prezzo e bottone -->
+                    <div class="col-md-6">
                         <div class="card-body">
-                            <h5 class="card-title">Nome prodotto</h5>
-                            <p class="card-text">Descrizione prodotto</p>
-                            <!-- DA AGGIUNGERE: onClick="AddToCart_Click" -->
-                            <asp:Button ID="Button1" runat="server" Text="Aggiungi al carrello" CssClass="btn btn-dark" Style="background-color: #663d71;" />
+                            <h5 class="card-title"><asp:Label ID="LabelCardTitle" runat="server" /></h5>
+                            <p class="card-text"><asp:Label ID="LabelCardDescription" runat="server" /></p>
+                            <p class="card-text"><asp:Label ID="LabelCardPrezzo" runat="server" /></p>
+                            <!-- Bottone per aggiungere al carrello -->
+                            <asp:Button ID="AddToCart" runat="server" Text="Aggiungi e vai al carrello" CssClass="btn btn-dark" Style="background-color: #663d71;" OnClick="AddToCart_Click"/>
                         </div>
                     </div>
                 </div>
             </div>
             <!--FINE CARD -->
         </div>
-        
         <!-- FINE CARD-->
     </main>
 </asp:Content>
+
